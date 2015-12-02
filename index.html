@@ -88,6 +88,16 @@
             <section>
                 <h2>Framework contract</h2>
             </section>
+
+            <section>
+                <h2>Come mantenere una codebase:</h2>
+                <ul>
+                    <li class="fragment">ampia</li>
+                    <li class="fragment">"vecchia"</li>
+                    <li class="fragment">"nuova" per alcuni dev</li>
+                </ul>
+                <h1 class="fragment">test coverage</h1>
+            </section>
         </section>
 
         <section>
@@ -107,13 +117,88 @@
             </section>
 
             <section>
-                <h2>Come mantenere una codebase:</h2>
-                <ul>
-                    <li class="fragment">ampia</li>
-                    <li class="fragment">"vecchia"</li>
-                    <li class="fragment">"nuova" per alcuni dev</li>
+                <h3>Organizzazione dello sprint</h3>
+                <ul class="fragment">
+                    <li>Open/Reopened</li>
+                    <li>Development</li>
+                    <li>Testing</li>
+                    <li>QA</li>
+                    <li>UAT</li>
                 </ul>
-                <h1 class="fragment">test coverage</h1>
+            </section>
+
+            <section>
+                <h3>Anatomia di un ticket</h3>
+                <ul>
+                    <li class="fragment">User story / descrizione bug</li>
+                    <li class="fragment">UAT steps</li>
+                    <li class="fragment">Definition of done</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Definition of done</h3>
+                <ul style="font-size: 80%;">
+                    <li>Functionally complete</li>
+                    <li>Automated tests cover UAT instructions</li>
+                    <li>Automated Simpletest tests passing within the last 24h</li>
+                    <li>Automated Selenium tests passing within the last 24h</li>
+                    <li>Working upgrade path from the last release in place</li>
+                    <li>...</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Automated tests</h3>
+                <ul>
+                    <li>Simpletest e Selenium</li>
+                    <li>Shoov.io / Webdrivercss</li>
+                    <li>
+                        Eseguiti su server tramite Jenkins CI
+                        <ul>
+                            <li>Esecuzioni giornaliere automatiche</li>
+                            <li>Esecuzioni manuali per ticket</li>
+                        </ul>
+                    </li>
+                    <li>Esecuzione remota su Browserstack</li>
+                </ul>
+
+                <aside class="notes">
+                    Citare coding standards Jenkins job.
+                </aside>
+            </section>
+
+            <section>
+                <img src="assets/images/dothraki.jpg" alt="Dothraki">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Selenium</h1>
+                <ul>
+                    <li>automatizzazione di test su applicazioni web</li>
+                    <li>ampiamente supportato in svariati linguaggi</li>
+                    <li>Selenium IDE e Webdriver</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Cosa testiamo in Selenium</h2>
+                <ul>
+                    <li>funzionalità personalizzate</li>
+                    <li>integrazioni tra moduli</li>
+                    <li>funzionalità Javascript</li>
+                    <li>regressioni</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Qualche numero</h2>
+                <ul>
+                    <li class="fragment">746 test per 10966 asserzioni</li>
+                    <li class="fragment">tempo di esecuzione di <span class="fragment">18 ore</span></li>
+                </ul>
             </section>
         </section>
 
