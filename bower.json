@@ -1,0 +1,22 @@
+{
+  "name": "drupal-day-2015",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "Francesco Sardara"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "~3.2.0"
+  }
+}

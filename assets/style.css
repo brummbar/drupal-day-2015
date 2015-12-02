@@ -1,0 +1,6 @@
+html.intro body {
+  background: #fff url('images/front.jpg') no-repeat 50% 50%;
+}
+html.outro body {
+  background: #fff url('images/retro.jpg') no-repeat 50% 50%;
+}
