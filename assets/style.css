@@ -1,3 +1,7 @@
+.align-left {
+  text-align: left;
+}
+
 html.intro body {
   background: #fff url('images/front.jpg') no-repeat 50% 50%;
 }
