@@ -196,8 +196,125 @@
             <section>
                 <h2>Qualche numero</h2>
                 <ul>
-                    <li class="fragment">746 test per 10966 asserzioni</li>
+                    <li class="fragment">746 test</li>
+                    <li class="fragment">10966 asserzioni</li>
                     <li class="fragment">tempo di esecuzione di <span class="fragment">18 ore</span></li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Page object pattern</h1>
+            </section>
+
+            <section>
+                immmagine composizione
+            </section>
+
+            <section>
+                <h2>Punti chiave</h2>
+                <ul>
+                    <li class="fragment">riduzione della duplicazione del codice</li>
+                    <li class="fragment">facilità nell’aggiornare la relativa classe se gli elementi della pagina cambiano</li>
+                    <li class="fragment">possibilità di sfruttare appieno i meccanismi di ereditarietà</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Regole</h2>
+                <ul>
+                    <li class="fragment">solo la classe deve contenere XPath / selettori CSS relativi all’elemento</li>
+                    <li class="fragment">nessuna assertion deve essere fatta all’interno della classe</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Page object pattern in Paddle</h1>
+            </section>
+
+            <section>
+                <h3>Struttura cartelle</h3>
+
+                <img src="assets/images/paddle-folder-struct.png" alt="Paddle folder structure" height="450">
+            </section>
+
+            <section>
+                <img src="assets/images/paddle-folder-pages.png" alt="Paddle pages folder" width="500">
+            </section>
+
+            <section>
+                <h2>Anatomia di una classe Page Object</h2>
+            </section>
+
+            <section>
+                <p>Il metodo costruttore contiene sempre una referenza a Webdriver e all'oggetto Selenium.</p>
+                <pre>
+                    <code class="hljs" data-trim >
+/**
+ * Construct a new GlossaryDefinitionTableRow.
+ *
+ * @param WebDriverTestCase $webdriver
+ *   The Selenium web driver test case.
+ * @param \PHPUnit_Extensions_Selenium2TestCase_Element $element
+ *   The webdriver element of the definition table row.
+ */
+public function __construct(WebDriverTestCase $webdriver, $element)
+{
+    parent::__construct($webdriver);
+    $this->element = $element;
+}
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <p>Tutte le proprietà che rappresentano altri Page Object sono gestite tramite magic get.</p>
+                <pre>
+                    <code class="hljs" data-trim>
+/**
+ * {@inheritdoc}
+ */
+public function __get($name)
+{
+    switch ($name) {
+        case 'saveButton':
+            return $this->element->byXPath('.//input[contains(@id, "edit-save")]');
+            break;
+        case 'definition':
+            return new Text($this->webdriver, $this->element->byName('definition'));
+            break;
+        case 'description':
+            return new Wysiwyg($this->webdriver, 'edit-field-glossary-description-und-0-value');
+            break;
+    }
+    throw new FormFieldNotDefinedException($name);
+}
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h3>Perché usare __get() ?</h3>
+                <ul>
+                    <li class="fragment">Legacy code</li>
+                    <li class="fragment">Separazione dalle proprietà</li>
+                    <li class="fragment">
+                        Linearità di lettura
+                        <pre style="min-width: 850px;">
+                            <code class="hljs" data-trim>
+$this->configurePage->go();
+$this->configurePage->contextualToolbar->buttonAdd->click();
+
+$modal->form->definition->fill($title);
+$modal->form->description->setBodyText($description);
+$modal->form->saveButton->click();
+$modal->waitUntilClosed();
+                            </code>
+                        </pre>
+                    </li>
                 </ul>
             </section>
         </section>
