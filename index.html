@@ -391,6 +391,40 @@ public function waitUntilOpened()
 }
                 </code></pre>
             </section>
+
+            <section>
+                <h2>Randomizzare i dati di test</h2>
+                <div class="fragment" style="float: left; width: 45%; font-size: 80%">
+                    <p class="align-left" style="padding-left: 30px; color: green; font-weight: 700;">Pro</p>
+                    <ul>
+                        <li>Evitare parzialmente "collisioni" tra contenuti</li>
+                        <li>Trovare casi limite</li>
+                        <li>Simulare un vero utilizzo del sistema</li>
+                    </ul>
+                </div>
+
+                <div class="fragment" style="margin-left: 5%; float: left; width: 45%; font-size: 80%">
+                    <p class="align-left" style="padding-left: 30px; color: red; font-weight: 700;">Contro</p>
+                    <ul>
+                        <li>La randomizzazione rende il test non completamente prevedibile</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    Caso limite: autocomplete transformati da SnowballPorterFilter <br>
+                    Caso limite contro: regione random nei test dei pannelli
+                </aside>
+            </section>
+
+            <section>
+                <h3>L'approccio di Paddle</h3>
+                <ul>
+                    <li class="fragment">La generazione dei contenuti è randomizzata.</li>
+                    <li class="fragment">I contenuti vengono lasciati intatti a meno che la loro presenza non complichi la realizzazione del test.</li>
+                </ul>
+
+                <aside class="notes">Atoms e il problema delle pagine multiple.</aside>
+            </section>
         </section>
 
         <section data-state="outro"></section>
