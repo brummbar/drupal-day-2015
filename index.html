@@ -251,8 +251,7 @@
 
             <section>
                 <p>Il metodo costruttore contiene sempre una referenza a Webdriver e all'oggetto Selenium.</p>
-                <pre class="php">
-                    <code class="hljs" data-trim>
+                <pre class="php"><code class="hljs" data-trim>
 /**
  * Construct a new GlossaryDefinitionTableRow.
  *
@@ -266,14 +265,12 @@ public function __construct(WebDriverTestCase $webdriver, $element)
     parent::__construct($webdriver);
     $this->element = $element;
 }
-                    </code>
-                </pre>
+                    </code></pre>
             </section>
 
             <section>
                 <p>Tutte le proprietà che rappresentano altri Page Object sono gestite tramite magic get.</p>
-                <pre class="php">
-                    <code class="hljs" data-trim>
+                <pre class="php"><code class="hljs" data-trim>
 /**
  * {@inheritdoc}
  */
@@ -292,8 +289,7 @@ public function __get($name)
     }
     throw new FormFieldNotDefinedException($name);
 }
-                    </code>
-                </pre>
+                    </code></pre>
             </section>
 
             <section>
@@ -303,8 +299,7 @@ public function __get($name)
                     <li class="fragment">Separazione dalle proprietà</li>
                     <li class="fragment">
                         Linearità di lettura
-                        <pre class="php" style="min-width: 850px;">
-                            <code class="hljs" data-trim>
+                        <pre class="php" style="min-width: 850px;"><code class="hljs" data-trim>
 $this->configurePage->go();
 $this->configurePage->contextualToolbar->buttonAdd->click();
 
@@ -312,10 +307,89 @@ $modal->form->definition->fill($title);
 $modal->form->description->setBodyText($description);
 $modal->form->saveButton->click();
 $modal->waitUntilClosed();
-                            </code>
-                        </pre>
+                            </code></pre>
                     </li>
                 </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Esempio di test case</h1>
+                <p><a href="phpstorm://open?file=/Users/francesco/Projects/web/paddle/selenium/tests/Kanooh/Paddle/App/Glossary/GlossaryTest.php&amp;line=34">GlossaryTest.php</a></p>
+                <p><a href="phpstorm://open?file=/Users/francesco/Projects/web/paddle/selenium/tests/Kanooh/Paddle/App/Glossary/GlossaryTest.php&amp;line=298">testGlossaryDefinitionHighlighting</a></p>
+
+                <aside class="notes">PRO tip: use PHPStorm to run tests... and debug them!</aside>
+            </section>
+
+            <section data-background-video="assets/videos/selenium-run-browserstack.mp4"></section>
+
+            <section>
+                <h2>Cosa ci si aspetta dai test</h2>
+
+                <img class="fragment" src="assets/images/tests-expected.png" alt="Expected results" width="338">
+                <img class="fragment" src="assets/images/tests-reality.png" alt="Real results" width="338">
+            </section>
+
+            <section>
+                <img src="assets/images/fail.gif" alt="Fail" width="600">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Sopravvivere ai test</h1>
+                <p>Approcci e best practices</p>
+            </section>
+
+            <section>
+                <h2>Random Failing Tests</h2>
+                <p>Per RFT si indicano quei test che senza nessun cambiamento nel codice o nei dati di test(*),
+                il loro risultato non è costante.</p>
+                <p class="fragment">Cause comuni:</p>
+                <ul>
+                    <li class="fragment">differenze hardware</li>
+                    <li class="fragment">dati di test</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>implicit e explicit waits</h2>
+                <p>Il tempo di attesa implicito rappresenta per quanto tempo Webdriver deve interrogare il DOM
+                in attesa di trovare un elemento se esso non è disponibile immediatamente.</p>
+                <p>Il tempo di attesa esplicito rappresenta per quanto tempo Webdriver deve aspettare una certa
+                condizione prima di proseguire con l'esecuzione.</p>
+            </section>
+
+            <section>
+                <h3>Implicit wait</h3>
+                <pre class="php"><code class="hljs" data-trim>
+// Add a new definition.
+$this->configurePage->contextualToolbar->buttonAdd->click();
+$modal = new GlossaryDefinitionModal($this);
+$modal->form->definition->fill('The awesome definition');
+                </code></pre>
+
+                <img class="fragment" src="assets/images/no-wait-failure.png" alt="No wait RFT" width="900">
+            </section>
+
+            <section>
+                <h3>Explicit wait</h3>
+                <pre class="php"><code class="hljs" data-trim>
+// Add a new definition.
+$this->configurePage->contextualToolbar->buttonAdd->click();
+$modal = new GlossaryDefinitionModal($this);
+$modal->waitUntilOpened();
+$modal->form->definition->fill('The awesome definition');
+                </code></pre>
+
+                <pre class="php fragment"><code class="hljs" data-trim>
+public function waitUntilOpened()
+{
+    $callable = new SerializableClosure(...);
+    $this->webdriver->waitUntil($callable, $this->timeout);
+}
+                </code></pre>
             </section>
         </section>
 
