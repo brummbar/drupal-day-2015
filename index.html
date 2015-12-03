@@ -251,8 +251,8 @@
 
             <section>
                 <p>Il metodo costruttore contiene sempre una referenza a Webdriver e all'oggetto Selenium.</p>
-                <pre>
-                    <code class="hljs" data-trim >
+                <pre class="php">
+                    <code class="hljs" data-trim>
 /**
  * Construct a new GlossaryDefinitionTableRow.
  *
@@ -272,7 +272,7 @@ public function __construct(WebDriverTestCase $webdriver, $element)
 
             <section>
                 <p>Tutte le proprietà che rappresentano altri Page Object sono gestite tramite magic get.</p>
-                <pre>
+                <pre class="php">
                     <code class="hljs" data-trim>
 /**
  * {@inheritdoc}
@@ -303,7 +303,7 @@ public function __get($name)
                     <li class="fragment">Separazione dalle proprietà</li>
                     <li class="fragment">
                         Linearità di lettura
-                        <pre style="min-width: 850px;">
+                        <pre class="php" style="min-width: 850px;">
                             <code class="hljs" data-trim>
 $this->configurePage->go();
 $this->configurePage->contextualToolbar->buttonAdd->click();
