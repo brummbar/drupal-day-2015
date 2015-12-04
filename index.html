@@ -86,10 +86,18 @@
             </section>
 
             <section>
-                <h2>Framework contract</h2>
+                <h2>Flemish government</h2>
+                <p>Framework contract</p>
+                <ul>
+                    <li>Unico referente per sito web, hosting e supporto;</li>
+                    <li>frontend che segue le specifiche di branding del governo Fiammingo;</li>
+                    <li>focus sulla gestione dei contenuti (revisioni, workflow);</li>
+                    <li>usabilità del backend per utenti non esperti;</li>
+                    <li>commenti, multilingua, contatti, quiz, rss, newsletter, protected pages.</li>
+                </ul>
             </section>
 
-            <section>
+            <!--<section>
                 <h2>Come mantenere una codebase:</h2>
                 <ul>
                     <li class="fragment">ampia</li>
@@ -97,7 +105,7 @@
                     <li class="fragment">"nuova" per alcuni dev</li>
                 </ul>
                 <h1 class="fragment">test coverage</h1>
-            </section>
+            </section>-->
         </section>
 
         <section>
@@ -107,13 +115,15 @@
 
             <section>
                 <p>Sprint di 2 settimane</p>
-                <p class="fragment">&darr;</p>
-                <p class="fragment">Soft release</p>
-                <p class="fragment">&darr;</p>
-                <p>
-                    <span class="fragment">Hard release</span><br>
-                    <span class="fragment">Rilascio in produzione</span>
-                </p>
+                <div class="fragment">
+                    <p>&darr;</p>
+                    <p>Soft release</p>
+                </div>
+                <div class="fragment">
+                    <p>&darr;</p>
+                    <p>Hard release</p>
+                    <p>Rilascio in produzione</p>
+                </div>
             </section>
 
             <section>
@@ -199,6 +209,7 @@
                     <li class="fragment">746 test</li>
                     <li class="fragment">10966 asserzioni</li>
                     <li class="fragment">tempo di esecuzione di <span class="fragment">18 ore</span></li>
+                    <li class="fragment">richiedono 2/3 del tempo di sviluppo</li>
                 </ul>
             </section>
         </section>
@@ -206,10 +217,6 @@
         <section>
             <section>
                 <h1>Page object pattern</h1>
-            </section>
-
-            <section>
-                immmagine composizione
             </section>
 
             <section>
@@ -325,14 +332,13 @@ $modal->waitUntilClosed();
             <section data-background-video="assets/videos/selenium-run-browserstack.mp4"></section>
 
             <section>
-                <h2>Cosa ci si aspetta dai test</h2>
-
-                <img class="fragment" src="assets/images/tests-expected.png" alt="Expected results" width="338">
-                <img class="fragment" src="assets/images/tests-reality.png" alt="Real results" width="338">
+                <h2>Risultato del test</h2>
+                <img class="fragment" src="assets/images/fail.gif" alt="Fail" height="500">
             </section>
 
             <section>
-                <img src="assets/images/fail.gif" alt="Fail" width="600">
+                <img class="fragment" src="assets/images/tests-expected.png" alt="Expected results" width="338">
+                <img class="fragment" src="assets/images/tests-reality.png" alt="Real results" width="338">
             </section>
         </section>
 
@@ -424,6 +430,35 @@ public function waitUntilOpened()
                 </ul>
 
                 <aside class="notes">Atoms e il problema delle pagine multiple.</aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Visual regression</h1>
+                <h3>Webdrivercss e shoov.io</h3>
+            </section>
+
+            <section>
+                <h2>Webdrivercss</h2>
+                <p>Tool di automatizzazione per test di visual regression per WebdriverIO.</p>
+
+                <aside class="notes">WebdriverIO è Selenium binding per Node.js</aside>
+            </section>
+
+            <section>
+                <h2>Shoov.io</h2>
+                <p>Tool di visual regression e live monitoring.</p>
+                <ul>
+                    <li class="fragment">Wrapper per Webdrivercss</li>
+                    <li class="fragment">Headless Drupal per lo storage degli screenshot</li>
+                    <li class="fragment">Angular.js web-app per il confronto visuale</li>
+                    <li class="fragment">Integrazione con Github (login, commits, pull request)</li>
+                </ul>
+            </section>
+
+            <section>
+                
             </section>
         </section>
 
