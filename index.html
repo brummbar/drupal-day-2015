@@ -140,9 +140,9 @@
             <section>
                 <h3>Anatomia di un ticket</h3>
                 <ul>
-                    <li class="fragment">User story / descrizione bug</li>
-                    <li class="fragment">UAT steps</li>
-                    <li class="fragment">Definition of done</li>
+                    <li>User story / descrizione bug</li>
+                    <li>UAT steps</li>
+                    <li>Definition of done</li>
                 </ul>
             </section>
 
@@ -235,9 +235,7 @@
                     <li class="fragment">nessuna assertion deve essere fatta all’interno della classe</li>
                 </ul>
             </section>
-        </section>
 
-        <section>
             <section>
                 <h1>Page object pattern in Paddle</h1>
             </section>
@@ -534,6 +532,35 @@ public function waitUntilPageIsLoaded()
     $this->webdriver->waitUntilElementIsDisplayed('//body');
 }
                 </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Improving Selenium results</h1>
+            </section>
+
+            <section>
+                <h3>Ripetizioni multiple per evitare l'introduzione di RFT</h3>
+                <pre class="sh"><code class="hljs" data-trim>
+$ base_url=http://paddle.dev ./vendor/bin/phpunit --repeat=3 \
+    tests/Kanooh/Paddle/App/ContactPerson/EnableDisableTest.php
+                </code></pre>
+            </section>
+
+            <section>
+                <h3>Riconoscere le RFT</h3>
+                <pre class="sh"><code class="hljs" data-trim>
+                    $ ./vendor/bin/phpunit --repeat=2 --only-repeat-failed tests/
+                </code></pre>
+            </section>
+
+            <section>
+                <h3>Velocizzare l'esecuzione</h3>
+                <ul>
+                    <li>esecuzione in parallelo dei test</li>
+                    <li>sfruttare drupal/drupal-driver per rimuovere interazioni browser non necessarie</li>
+                </ul>
             </section>
         </section>
 
