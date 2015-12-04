@@ -495,6 +495,46 @@ public function markAsWaitingForAjaxCallback(\PHPUnit_Extensions_Selenium2TestCa
 }
                 </code></pre>
             </section>
+
+            <section>
+                <h2>Mastering the stale</h2>
+
+                <pre class="php fragment"><code class="hljs" data-trim>
+// ...
+$form = $image_pane_type->getForm();
+$form->showCaption->check();
+// Submit the form and reload the modal.
+$form->submit();
+// Test something else.
+$form->captionTextArea->fill('Oooops');
+// ...
+                </code></pre>
+
+                <img class="fragment" src="assets/images/stale-failure.png" alt="Stale" width="900">
+            </section>
+
+            <section>
+                <h2>Exploiting the stale</h2>
+                <pre class="php fragment"><code class="hljs" data-trim>
+// Waits until the current page is loaded.
+public function waitUntilPageIsLoaded()
+{
+    $body = $this->bodyElement;
+    $webdriver = $this->webdriver;
+    $callable = new SerializableClosure(
+        function () use ($body, $webdriver) {
+            try {
+                $body->click();
+            } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
+                return true;
+            }
+        }
+    );
+    $this->webdriver->waitUntil($callable, $this->webdriver->getTimeout());
+    $this->webdriver->waitUntilElementIsDisplayed('//body');
+}
+                </code></pre>
+            </section>
         </section>
 
         <section>
